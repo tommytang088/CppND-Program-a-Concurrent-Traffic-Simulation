@@ -65,8 +65,6 @@ private:
   // semantics.
 
   MessageQueue _msgQueue;
-  std::condition_variable _condition;
-  std::mutex _mutex;
 };
 
 #endif

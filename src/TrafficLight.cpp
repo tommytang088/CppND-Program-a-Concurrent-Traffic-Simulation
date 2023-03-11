@@ -25,7 +25,8 @@ void MessageQueue::send(TrafficLightPhase &&phase) {
   // std::lock_guard<std::mutex> as well as _condition.notify_one() to add a new
   // message to the queue and afterwards send a notification.
   std::lock_guard<std::mutex> lck(_mutex);
-  _queue.push_back(std::move(phase));
+  _queue.clear(); // clear traffic lights queue before adding the latest phase
+  _queue.emplace_back(std::move(phase));
   _cond.notify_one();
 }
 
